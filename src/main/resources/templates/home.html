@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kitap Yorumları</title>
+</head>
+<body>
+
+<h1>Merhaba Dünya</h1>
+
+<!-- Başarı veya hata mesajını göster -->
+<div th:if="${message}">
+    <p th:text="${message}"></p>
+</div>
+
+<!-- Yeni yorum ekleme formu -->
+<div>
+    <h2>Yorum Ekle</h2>
+    <form action="/submit-text" method="POST">
+        <label for="inputText">Yorumlar:</label>
+        <input type="text" id="inputText" name="userText" placeholder="Yorumunuz" required>
+        <button type="submit">Gönder</button>
+    </form>
+</div>
+
+<!-- Kitap Listesi -->
+<div>
+    <h2>Kaydedilen Kitap Yorumları</h2>
+    <ul>
+        <li th:each="book : ${books}">
+            <span th:text="${book.name}">Kitap Adı</span>
+            <a th:href="@{/delete/{id}(id=${book.id})}" onclick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?')">Sil</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Görseller -->
+<div>
+    <h2>Görseller</h2>
+    <div>
+        <h3>Birinci Görsel</h3>
+        <img th:src="@{/images/image1.jfif}" alt="Birinci Görsel">
+    </div>
+    <div>
+        <h3>İkinci Görsel</h3>
+        <img th:src="@{/images/image2.jfif}" alt="İkinci Görsel">
+    </div>
+</div>
+
+</body>
+</html>
